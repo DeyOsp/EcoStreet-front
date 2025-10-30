@@ -114,9 +114,7 @@ export default function Home() {
         <Map></Map>
 
         {/* Reports */}
-        {/* <section id="report" className="">
-          reports
-        </section> */}
+        <Form></Form>
 
         {/* Community Impact */}
         <section id="community" className="py-16 md:py-24">
