@@ -8,10 +8,11 @@ export default function Map() {
           <div className="mx-auto max-w-6xl">
             <div className="mb-8 text-center">
               <h2 className="text-balance text-3xl font-bold tracking-tight text-[#19251e] md:text-4xl">
-                Interactive Community Map
+                Mapa interactivo de la comunidad
               </h2>
               <p className="mt-4 text-pretty text-[#5a675f]">
-                Explore reported sites and eco-friendly locations in your area
+                Explora los sitios reportados y las ubicaciones ecológicas en tu
+                zona.
               </p>
             </div>
             <div className="mb-6">
@@ -19,7 +20,7 @@ export default function Map() {
                 <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5a675f]" />
                 <input
                   type="text"
-                  placeholder="Search locations..."
+                  placeholder="Buscar ubicaciones..."
                   className="file:text-[#19251e] placeholder:text-[#5a675f] selection:bg-[#008a48] selection:text-[#fafdf9] dark:bg-[#d4d9d3]/30 border-[#d4d9d3] h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-[#008a48] focus-visible:ring-[#008a48]/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-[#de3b3d] pl-10 pr-10"
                 />
               </div>
@@ -79,7 +80,7 @@ export default function Map() {
                               <Trash2 className="h-3 w-3 text-white" />
                             </div>
                             <span className="text-sm text-[#19251e]">
-                              Illegal Dump Sites
+                              Vertederos ilegales
                             </span>
                           </div>
                           <div className="flex items-center gap-2">
@@ -87,7 +88,7 @@ export default function Map() {
                               <Leaf className="h-3 w-3 text-[#fafdf9]" />
                             </div>
                             <span className="text-sm text-[#19251e]">
-                              Green Points
+                              Puntos Verdes
                             </span>
                           </div>
                         </div>
@@ -102,7 +103,7 @@ export default function Map() {
                     <div className="flex h-full flex-col items-center justify-center text-center">
                       <MapPin className="h-12 w-12 text-[#5a675f]" />
                       <p className="mt-4 text-sm text-[#5a675f]">
-                        Click on a marker to view details
+                        Haz clic en un marcador para ver los detalles.
                       </p>
                     </div>
                   </div>
