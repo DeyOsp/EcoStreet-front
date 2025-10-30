@@ -3,7 +3,7 @@ import { Leaf, MapPin, Search, Trash2 } from "lucide-react";
 export default function Map() {
   return (
     <>
-      <section className="py-16 md:py-24">
+      <section id="map" className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-6xl">
             <div className="mb-8 text-center">
