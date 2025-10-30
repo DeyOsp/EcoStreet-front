@@ -2,10 +2,30 @@ import { MapPin, Trash2, Users, Award } from "lucide-react";
 
 export default function CommunitySection() {
   const impact_list = [
-    { icon: 1, num: "127", text: "Ubicaciones reportadas" },
-    { icon: 2, num: "43", text: "Sitios limpiados" },
-    { icon: 3, num: "850+", text: "Miembros activos" },
-    { icon: 4, num: "15", text: "Eventos comunitarios" },
+    {
+      icon: MapPin,
+      num: "127",
+      text: "Ubicaciones reportadas",
+      color: "text-[#008a48]",
+    },
+    {
+      icon: Trash2,
+      num: "43",
+      text: "Sitios limpiados",
+      color: "text-[#00a4ac]",
+    },
+    {
+      icon: Users,
+      num: "850+",
+      text: "Miembros activos",
+      color: "text-[#008a48]",
+    },
+    {
+      icon: Award,
+      num: "15",
+      text: "Eventos comunitarios",
+      color: "text-[#00a4ac]",
+    },
   ];
 
   const stories_list = [
@@ -50,15 +70,7 @@ export default function CommunitySection() {
               >
                 <div className="px-6 pt-6">
                   <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#e1e6e0]">
-                    {impact.icon == 1 ? (
-                      <MapPin className="h-6 w-6 text-[#008a48]" />
-                    ) : impact.icon == 2 ? (
-                      <Trash2 className="h-6 w-6 text-[#00a4ac]" />
-                    ) : impact.icon == 3 ? (
-                      <Users className="h-6 w-6 text-[#008a48]" />
-                    ) : (
-                      <Award className="h-6 w-6 text-[#00a4ac]" />
-                    )}
+                    <impact.icon className={`h-6 w-6 ${impact.color}`} />
                   </div>
                   <div className="text-3xl font-bold text-[#19251e]">
                     {impact.num}
