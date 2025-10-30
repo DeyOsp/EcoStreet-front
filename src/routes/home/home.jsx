@@ -1,3 +1,6 @@
+import Map from "@components/map.jsx";
+import Form from "@components/form.jsx";
+
 import {
   Leaf,
   ArrowRight,
@@ -108,9 +111,7 @@ export default function Home() {
         </section>
 
         {/* Map */}
-        {/* <section id="map" className="">
-          map
-        </section> */}
+        <Map></Map>
 
         {/* Reports */}
         {/* <section id="report" className="">
