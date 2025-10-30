@@ -1,6 +1,6 @@
 import { Leaf, MapPin, Search, Trash2 } from "lucide-react";
 
-export default function Map() {
+export default function MapSection() {
   return (
     <>
       <section id="map" className="py-16 md:py-24">

@@ -1,6 +1,6 @@
 import { Circle, Leaf, Trash2, Upload } from "lucide-react";
 
-export default function Form() {
+export default function ReportForm() {
   return (
     <>
       <section id="report" className="bg-[#e1e6e0] py-16 md:py-24">
