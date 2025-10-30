@@ -7,7 +7,7 @@ import Footer from "@components/footer.jsx";
 
 export default function Home() {
   return (
-    <>
+    <div className="min-h-screen">
       <Header />
       <main>
         <HeroSection />
@@ -16,6 +16,6 @@ export default function Home() {
         <CommunitySection />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
