@@ -1,72 +1,98 @@
 import { MapPin, Trash2, Users, Award } from "lucide-react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 export default function CommunitySection() {
-  const impact_list = [
+  const [storiesData, setStoriesData] = useState([]);
+  const [impactData, setImpactData] = useState(null);
+
+  const impactBase = [
     {
       icon: MapPin,
-      num: "127",
+      key: "total_reportes",
       text: "Ubicaciones reportadas",
       color: "text-[#008a48]",
     },
     {
       icon: Trash2,
-      num: "43",
+      key: "sitios_limpiados",
       text: "Sitios limpiados",
       color: "text-[#00a4ac]",
     },
     {
       icon: Users,
-      num: "850+",
+      key: "miembros_registrados",
       text: "Miembros activos",
       color: "text-[#008a48]",
     },
     {
       icon: Award,
-      num: "15",
+      key: "eventos_comunitarios",
       text: "Eventos comunitarios",
       color: "text-[#00a4ac]",
     },
   ];
 
-  const stories_list = [
-    {
-      date: "Octubre de 2025",
-      title: "Éxito en la limpieza de Poblado",
-      description:
-        "Voluntarios locales limpiaron 3 vertederos ilegales en una semana, retirando más de 500 kg de residuos.",
-    },
-    {
-      date: "Septiembre de 2025",
-      title: "Se inaugura un nuevo centro de reciclaje",
-      description:
-        "Iniciativa comunitaria crea nuevo punto ecológico que acepta todo tipo de materiales reciclables.",
-    },
-    {
-      date: "Agosto de 2025",
-      title: "Programa de Asociación Escolar",
-      description:
-        "Estudiantes de 5 escuelas locales se unen a la iniciativa de barrio limpio.",
-    },
-  ];
+  function getStoriesData() {
+    axios
+      .get(`http://localhost:3000/test/server/v1/historias/g/get-historias`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        setStoriesData(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  function getImpactData() {
+    axios
+      .get(`http://localhost:3000/test/server/v1/comunidad/g/get-comunidad`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        setImpactData(response.data[0]);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  useEffect(() => {
+    getImpactData();
+    getStoriesData();
+  }, []);
+
+  if (!impactData) return <p>Cargando...</p>;
+
+  const mergedList = impactBase.map((item) => ({
+    ...item,
+    num: impactData[item.key] ?? 0,
+  }));
 
   return (
     <section id="community" className="py-16 md:py-24">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-6xl">
           <div className="mb-12 text-center">
-            <h2 className="text-balance text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            <h2 className="text-balance text-3xl font-bold tracking-tight text-[#19251e] md:text-4xl">
               Impacto comunitario
             </h2>
-            <p className="mt-4 text-pretty text-muted-foreground">
+            <p className="mt-4 text-pretty text-[#5a675f]">
               Juntos, estamos marcando una verdadera diferencia en nuestros
               barrios.
             </p>
           </div>
           <div className="mb-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {impact_list.map((impact, index) => (
+            {mergedList.map((impact, index) => (
               <div
                 key={index}
-                className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm text-center"
+                className="bg-white text-[#19251e] flex flex-col gap-6 rounded-xl border py-6 shadow-sm text-center"
               >
                 <div className="px-6 pt-6">
                   <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#e1e6e0]">
@@ -75,7 +101,7 @@ export default function CommunitySection() {
                   <div className="text-3xl font-bold text-[#19251e]">
                     {impact.num}
                   </div>
-                  <div className="mt-1 text-sm text-muted-foreground text-[#5a675f]">
+                  <div className="mt-1 text-sm text-[#5a675f]">
                     {impact.text}
                   </div>
                 </div>
@@ -83,24 +109,24 @@ export default function CommunitySection() {
             ))}
           </div>
           <div>
-            <h3 className="mb-6 text-center text-2xl font-bold text-foreground">
+            <h3 className="mb-6 text-center text-2xl font-bold text-[#19251e]">
               Historias de éxito recientes
             </h3>
             <div className="grid gap-6 md:grid-cols-3">
-              {stories_list.map((stories, index) => (
+              {storiesData.map((stories) => (
                 <div
-                  key={index}
-                  className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm transition-shadow hover:shadow-lg"
+                  key={stories.id}
+                  className="bg-white text-[#19251e] flex flex-col gap-6 rounded-xl border py-6 shadow-sm transition-shadow hover:shadow-lg"
                 >
                   <div className="px-6 pt-6">
                     <div className="mb-2 text-xs font-medium text-[#008a48]">
-                      {stories.date}
+                      {stories.mes_anio}
                     </div>
                     <h4 className="mb-3 text-lg font-semibold text-[#19251e]">
-                      {stories.title}
+                      {stories.titulo}
                     </h4>
                     <p className="text-sm text-[#5a675f]">
-                      {stories.description}
+                      {stories.descripcion}
                     </p>
                   </div>
                 </div>
