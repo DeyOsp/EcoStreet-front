@@ -1,10 +1,17 @@
 import { ArrowRight } from "lucide-react";
 
 export default function HeroSection() {
+  const scrollToMap = () => {
+    const element = document.getElementById("map");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       id="hero"
-      className="relative overflow-hidden bg-gradient-to-b from-secondary to-background"
+      className="relative overflow-hidden bg-gradient-to-b from-[#e1e6e0] to-[#fafdf9]"
     >
       <div className="absolute inset-0 bg-[url('@assets/img/Medellin.jpg')] bg-cover bg-center opacity-20"></div>
       <div className="container relative mx-auto px-4 py-24 md:py-32">
@@ -18,11 +25,21 @@ export default function HeroSection() {
             verde.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <button className="inline-flex items-center justify-center gap-2 text-sm font-medium transition-all bg-[#008a48] text-white hover:bg-[#008a48]/90 h-10 rounded-md px-6 group">
+            <button
+              className="inline-flex items-center justify-center gap-2 text-sm font-medium transition-all bg-[#008a48] text-white hover:bg-[#008a48]/90 h-10 rounded-md px-6 group"
+              onClick={scrollToMap}
+            >
               Abrir el mapa
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </button>
-            <button className="inline-flex items-center justify-center gap-2 text-sm font-medium transition-all shadow-sm bg-white hover:bg-[#00a4ac] hover:text-white h-10 rounded-md px-6">
+            <button
+              className="inline-flex items-center justify-center gap-2 text-sm font-medium transition-all shadow-sm bg-white hover:bg-[#00a4ac] hover:text-white h-10 rounded-md px-6"
+              onClick={() =>
+                document
+                  .getElementById("report")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
               Enviar un informe
             </button>
           </div>

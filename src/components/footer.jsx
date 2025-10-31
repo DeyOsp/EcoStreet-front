@@ -25,17 +25,38 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2">
               <li>
-                <button className="text-sm text-[#5a675f] hover:text-[#008a48] transition-colors">
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("map")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="text-sm text-[#5a675f] hover:text-[#008a48] transition-colors"
+                >
                   Ver mapa
                 </button>
               </li>
               <li>
-                <button className="text-sm text-[#5a675f] hover:text-[#008a48] transition-colors">
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("report")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="text-sm text-[#5a675f] hover:text-[#008a48] transition-colors"
+                >
                   Enviar informe
                 </button>
               </li>
               <li>
-                <button className="text-sm text-[#5a675f] hover:text-[#008a48] transition-colors">
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("community")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="text-sm text-[#5a675f] hover:text-[#008a48] transition-colors"
+                >
                   Impacto comunitario
                 </button>
               </li>
