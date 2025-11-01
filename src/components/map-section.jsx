@@ -1,65 +1,32 @@
 import { Leaf, MapPin, Search, Trash2, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function MapSection() {
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-  // const [sampleMarkers, setSampleMarkers] = useState([]);
+  const [sampleMarkers, setSampleMarkers] = useState([]);
 
-  const sampleMarkers = [
-    {
-      id: 1,
-      tipo: "dump",
-      titulo: "Illegal Dump Site - Calle 50",
-      descripcion: "Large pile of construction debris blocking sidewalk",
-      latitud: 6.244203,
-      longitud: -75.581212,
-      reportado_por: "María G.",
-      fecha_reporte: "2025-10-20",
-      image: "@assets/img-test.png",
-    },
-    {
-      id: 2,
-      tipo: "green",
-      titulo: "Recycling Center - Poblado",
-      descripcion:
-        "Community recycling point accepting paper, plastic, and glass",
-      latitud: 6.248,
-      longitud: -75.575,
-      reportado_por: "Carlos M.",
-      fecha_reporte: "2025-10-18",
-    },
-    {
-      id: 3,
-      tipo: "dump",
-      titulo: "Waste Accumulation - Parque Lleras",
-      descripcion: "Bags of household waste left on street corner",
-      latitud: 6.252,
-      longitud: -75.568,
-      reportado_por: "Ana R.",
-      fecha_reporte: "2025-10-22",
-    },
-    {
-      id: 4,
-      tipo: "green",
-      titulo: "Eco Point - Envigado",
-      descripcion: "Composting facility and organic waste collection",
-      latitud: 6.24,
-      longitud: -75.59,
-      reportado_por: "Juan P.",
-      fecha_reporte: "2025-10-15",
-    },
-    {
-      id: 5,
-      tipo: "dump",
-      titulo: "Furniture Dumping - Av. El Poblado",
-      descripcion: "Old furniture and mattresses abandoned",
-      latitud: 6.256,
-      longitud: -75.572,
-      reportado_por: "Sofia L.",
-      fecha_reporte: "2025-10-25",
-    },
-  ];
+  // Agregar en la DB las imágenes ya sea con la foránea o con una nueva columna
+
+  function getSampleMarkers() {
+    axios
+      .get(`http://localhost:3000/test/server/v1/reportes/g/get-reportes`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        setSampleMarkers(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  useEffect(() => {
+    getSampleMarkers();
+  }, []);
 
   const filteredMarkers = sampleMarkers.filter(
     (marker) =>
