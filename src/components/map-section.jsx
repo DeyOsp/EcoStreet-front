@@ -4,66 +4,67 @@ import { useState } from "react";
 export default function MapSection() {
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  // const [sampleMarkers, setSampleMarkers] = useState([]);
 
   const sampleMarkers = [
     {
       id: 1,
-      type: "dump",
-      lat: 6.244203,
-      lng: -75.581212,
-      title: "Illegal Dump Site - Calle 50",
-      description: "Large pile of construction debris blocking sidewalk",
-      date: "2025-10-20",
-      reporter: "María G.",
+      tipo: "dump",
+      titulo: "Illegal Dump Site - Calle 50",
+      descripcion: "Large pile of construction debris blocking sidewalk",
+      latitud: 6.244203,
+      longitud: -75.581212,
+      reportado_por: "María G.",
+      fecha_reporte: "2025-10-20",
       image: "@assets/img-test.png",
     },
     {
       id: 2,
-      type: "green",
-      lat: 6.248,
-      lng: -75.575,
-      title: "Recycling Center - Poblado",
-      description:
+      tipo: "green",
+      titulo: "Recycling Center - Poblado",
+      descripcion:
         "Community recycling point accepting paper, plastic, and glass",
-      date: "2025-10-18",
-      reporter: "Carlos M.",
+      latitud: 6.248,
+      longitud: -75.575,
+      reportado_por: "Carlos M.",
+      fecha_reporte: "2025-10-18",
     },
     {
       id: 3,
-      type: "dump",
-      lat: 6.252,
-      lng: -75.568,
-      title: "Waste Accumulation - Parque Lleras",
-      description: "Bags of household waste left on street corner",
-      date: "2025-10-22",
-      reporter: "Ana R.",
+      tipo: "dump",
+      titulo: "Waste Accumulation - Parque Lleras",
+      descripcion: "Bags of household waste left on street corner",
+      latitud: 6.252,
+      longitud: -75.568,
+      reportado_por: "Ana R.",
+      fecha_reporte: "2025-10-22",
     },
     {
       id: 4,
-      type: "green",
-      lat: 6.24,
-      lng: -75.59,
-      title: "Eco Point - Envigado",
-      description: "Composting facility and organic waste collection",
-      date: "2025-10-15",
-      reporter: "Juan P.",
+      tipo: "green",
+      titulo: "Eco Point - Envigado",
+      descripcion: "Composting facility and organic waste collection",
+      latitud: 6.24,
+      longitud: -75.59,
+      reportado_por: "Juan P.",
+      fecha_reporte: "2025-10-15",
     },
     {
       id: 5,
-      type: "dump",
-      lat: 6.256,
-      lng: -75.572,
-      title: "Furniture Dumping - Av. El Poblado",
-      description: "Old furniture and mattresses abandoned",
-      date: "2025-10-25",
-      reporter: "Sofia L.",
+      tipo: "dump",
+      titulo: "Furniture Dumping - Av. El Poblado",
+      descripcion: "Old furniture and mattresses abandoned",
+      latitud: 6.256,
+      longitud: -75.572,
+      reportado_por: "Sofia L.",
+      fecha_reporte: "2025-10-25",
     },
   ];
 
   const filteredMarkers = sampleMarkers.filter(
     (marker) =>
-      marker.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      marker.description.toLowerCase().includes(searchQuery.toLowerCase())
+      marker.titulo.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      marker.descripcion.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -117,14 +118,14 @@ export default function MapSection() {
                           onClick={() => setSelectedMarker(marker)}
                           className="absolute group transition-transform hover:scale-110"
                           style={{
-                            left: `${((marker.lng + 75.581212) / 0.022) * 100}%`,
-                            top: `${((6.256 - marker.lat) / 0.016) * 100}%`,
+                            left: `${((marker.longitud + 75.581212) / 0.022) * 100}%`,
+                            top: `${((6.256 - marker.latitud) / 0.016) * 100}%`,
                           }}
                         >
                           <div
-                            className={`flex h-10 w-10 items-center justify-center rounded-full shadow-lg transition-all ${marker.type === "dump" ? "bg-[#de3b3d] text-[#fafdf9]" : "bg-[#008a48] text-[#fafdf9]"} ${selectedMarker?.id === marker.id ? (marker.type === "dump" ? "ring-4 ring-[#de3b3d]" : "ring-4 ring-[#008a48]") : ""}`}
+                            className={`flex h-10 w-10 items-center justify-center rounded-full shadow-lg transition-all ${marker.tipo === "dump" ? "bg-[#de3b3d] text-[#fafdf9]" : "bg-[#008a48] text-[#fafdf9]"} ${selectedMarker?.id === marker.id ? (marker.tipo === "dump" ? "ring-4 ring-[#de3b3d]" : "ring-4 ring-[#008a48]") : ""}`}
                           >
-                            {marker.type === "dump" ? (
+                            {marker.tipo === "dump" ? (
                               <Trash2 className="h-5 w-5" />
                             ) : (
                               <Leaf className="h-5 w-5" />
@@ -168,9 +169,9 @@ export default function MapSection() {
                     <div className="space-y-4">
                       <div className="flex items-start justify-between">
                         <div
-                          className={`inline-flex items-center justify-center gap-1 rounded-md px-2 py-0.5 text-xs font-medium text-[#fafdf9] transition-colors focus-visible:ring-2 [&>svg]:size-3 ${selectedMarker.type === "dump" ? "bg-[#de3b3d] hover:bg-[#de3b3d]/90 focus-visible:ring-[#de3b3d]/50" : "bg-[#008a48] hover:bg-[#008a48]/90 focus-visible:ring-[#008a48]/50"}`}
+                          className={`inline-flex items-center justify-center gap-1 rounded-md px-2 py-0.5 text-xs font-medium text-[#fafdf9] transition-colors focus-visible:ring-2 [&>svg]:size-3 ${selectedMarker.tipo === "dump" ? "bg-[#de3b3d] hover:bg-[#de3b3d]/90 focus-visible:ring-[#de3b3d]/50" : "bg-[#008a48] hover:bg-[#008a48]/90 focus-visible:ring-[#008a48]/50"}`}
                         >
-                          {selectedMarker.type === "dump" ? (
+                          {selectedMarker.tipo === "dump" ? (
                             <>
                               <Trash2 className="mr-1 h-3 w-3" />
                               Vertedero
@@ -192,10 +193,10 @@ export default function MapSection() {
 
                       <div>
                         <h3 className="text-lg font-semibold text-[#19251e]">
-                          {selectedMarker.title}
+                          {selectedMarker.titulo}
                         </h3>
                         <p className="mt-2 text-sm text-[#5a675f]">
-                          {selectedMarker.description}
+                          {selectedMarker.descripcion}
                         </p>
                       </div>
 
@@ -203,7 +204,7 @@ export default function MapSection() {
                         <div className="overflow-hidden rounded-lg">
                           <img
                             src={selectedMarker.image || "/placeholder.svg"}
-                            alt={selectedMarker.title}
+                            alt={selectedMarker.titulo}
                             className="h-48 w-full object-cover"
                           />
                         </div>
@@ -213,13 +214,13 @@ export default function MapSection() {
                         <div className="flex items-center justify-between text-sm">
                           <span className="text-[#5a675f]">Informado por:</span>
                           <span className="font-medium text-[#19251e]">
-                            {selectedMarker.reporter}
+                            {selectedMarker.reportado_por}
                           </span>
                         </div>
                         <div className="flex items-center justify-between text-sm">
                           <span className="text-[#5a675f]">Date:</span>
                           <span className="font-medium text-[#19251e]">
-                            {selectedMarker.date}
+                            {selectedMarker.fecha_reporte}
                           </span>
                         </div>
                       </div>
